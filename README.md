@@ -36,7 +36,15 @@
     > docker push
 
 ---
-## Day4: Docker compose and 
-> docker compose build
-> docker compose up
-> docker compose down 
+## Day4: Docker compose using nginx, postgres, 
+![image Using docker compose](/docker-compose/lab-day4-access-db-image.png)
+
+> docker compose build<br/>
+> docker compose up -d<br/>
+> docker compose down<br/>
+> docker container exec -it postgres bash<br/>
+
+After login to Postgres image
+> psql -d demo -U uuser<br/>
+
+- Connect backend image with database

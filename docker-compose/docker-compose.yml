@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  web:
+    image: porrpor/demo:3.0
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: nginx-demo
+    ports:
+      - 7777:80
+    
+  backend:
+    image: backend:1.0
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend-demo
+    ports:
+      - 3000:3000
+    environment:
+      DB_HOST: db
+      DB_NAME: demo
+      DB_USER: uuser
+      DB_PASSWORD: Passw0rd
+
+  db:
+    image: postgres-demo
+    build:
+      context: ./postgres
+      dockerfile: Dockerfile
+    container_name: postgres
+    environment:
+      POSTGRES_USER: uuser
+      POSTGRES_PASSWORD: Passw0rd
+      POSTGRES_DB: demo
