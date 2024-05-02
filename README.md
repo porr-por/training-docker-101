@@ -1,6 +1,6 @@
 # training-docker-101
 
-## Day1: Use image from Docker Hub
+## Day2: Use image from Docker Hub
 ![image Redis](/docker-image/lab-redis.png)
 
 - Sign up Docker Hub account
@@ -19,7 +19,7 @@
 
 
 ---
-## Day2: Create custom image, push to Docker Hub and using friend's Docker image
+## Day3: Create custom image, push to Docker Hub and using friend's Docker image
 ![image Using Custom Docker from Friend](/dockerfile/day2-docker-image.png)
 
 - Using nginx
@@ -34,3 +34,9 @@
     > docker build <DOCKER_HUB_NAME/IMAGE_NAME:TAG_VERSION>
 - Push image to docker hub
     > docker push
+
+---
+## Day4: Docker compose and 
+> docker compose build
+> docker compose up
+> docker compose down 
