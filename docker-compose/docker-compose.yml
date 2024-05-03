@@ -23,6 +23,31 @@ services:
       DB_NAME: demo
       DB_USER: uuser
       DB_PASSWORD: Passw0rd
+    #depends_on:
+    #  - db
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:3000 || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    depends_on:
+      db:
+        condition: service_healthy
+  
+  frontend:
+    image: frontend:1.0
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend-demo
+    ports:
+      - 8888:80
+    #depends_on:
+    #  - backend
+    depends_on:
+      backend:
+        condition: service_healthy
 
   db:
     image: postgres-demo
@@ -34,3 +59,9 @@ services:
       POSTGRES_USER: uuser
       POSTGRES_PASSWORD: Passw0rd
       POSTGRES_DB: demo
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s

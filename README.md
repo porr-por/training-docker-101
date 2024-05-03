@@ -17,6 +17,7 @@
     > docker stop <DOCKER ID><br/>
     > docker prune<br/>
 
+<br/><br/>
 
 ---
 ## Day3: Create custom image, push to Docker Hub and using friend's Docker image
@@ -35,6 +36,8 @@
 - Push image to docker hub
     > docker push
 
+<br/><br/>
+
 ---
 ## Day4: Docker compose using nginx, postgres, 
 ![image Using docker compose](/docker-compose/lab-day4-access-db-image.png)
@@ -48,3 +51,17 @@ After login to Postgres image
 > psql -d demo -U uuser<br/>
 
 - Connect backend image with database
+<br/><br/>
+
+---
+## Day5: Docker compose with frontend, backend and postgres
+![image Using docker compose](/docker-compose/lab-day5-health-check-dependency.png)
+
+- Create dockerfile for frontend service
+- Update docker-compose by adding frontend service
+- Update docker compose by dependency
+- Health check service and build specific service without down compose
+    > docker compose up <SERVICE_NAME> -d --build<br/>
+        > docker compose up db -d --build
+
+
