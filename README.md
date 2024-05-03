@@ -63,5 +63,6 @@ After login to Postgres image
 - Health check service and build specific service without down compose
     > docker compose up <SERVICE_NAME> -d --build<br/>
         > docker compose up db -d --build
+- API automated test in container
 
 

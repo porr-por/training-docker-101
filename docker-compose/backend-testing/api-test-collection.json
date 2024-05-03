@@ -1,0 +1,40 @@
+{
+	"info": {
+		"_postman_id": "add16898-7516-4df7-acbb-db3bc297293d",
+		"name": "api-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32957587",
+		"_collection_link": "https://red-spaceship-144362.postman.co/workspace/workshop-egat~b076363a-ee62-4ee7-a03f-951c5122d9dd/collection/32957587-add16898-7516-4df7-acbb-db3bc297293d?action=share&source=collection_link&creator=32957587"
+	},
+	"item": [
+		{
+			"name": "getMerchant",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "backend:3000",
+					"host": [
+						"backend"
+					],
+					"port": "3000"
+				}
+			},
+			"response": []
+		}
+	]
+}

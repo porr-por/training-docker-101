@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="api-test" tests="1" time="0.046">
+  <testsuite name="getMerchant" id="4e1f8b24-2513-43ca-9199-ad1c2b431298" timestamp="2024-05-03T10:46:41.383Z" tests="1" failures="0" errors="0" time="0.046">
+    <testcase name="Status code is 200" time="0.046" classname="ApiTest"/>
+  </testsuite>
+</testsuites>

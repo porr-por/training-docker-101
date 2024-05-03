@@ -65,3 +65,19 @@ services:
       timeout: 5s
       retries: 5
       start_period: 5s
+  
+  frontend-test:
+    image: frontend-service-test:1.0
+    build:
+      context: 
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend-testing/report
+
+  backend-test:
+    image: backend-service-test:1.0
+    build:
+      context: ./backend-testing
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend-testing/report:/etc/newman/newman
