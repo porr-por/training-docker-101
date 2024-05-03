@@ -57,6 +57,8 @@ After login to Postgres image
 ## Day5: Docker compose with frontend, backend and postgres
 ![image Using docker compose](/docker-compose/lab-day5-health-check-dependency.png)
 
+![image using postman](/docker-compose/lab-day5-postman.png)
+
 - Create dockerfile for frontend service
 - Update docker-compose by adding frontend service
 - Update docker compose by dependency
@@ -64,5 +66,3 @@ After login to Postgres image
     > docker compose up <SERVICE_NAME> -d --build<br/>
         > docker compose up db -d --build
 - API automated test in container
-
-
