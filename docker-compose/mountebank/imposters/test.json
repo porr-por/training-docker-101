@@ -1,0 +1,38 @@
+{
+    "protocol": "http",
+    "port": 8091,
+    "stubs": [
+        {
+            "predicates": [
+                {
+                    "deepEquals": {
+                        "method": "POST"
+                    }
+                },
+                {
+                    "deepEquals": {
+                        "path": "/test"
+                    }
+                }
+            ],
+            "responses": [
+                {
+                    "is": {
+                        "statusCode": 200,
+                        "headers": {
+                            "Content-Type": "application/json"
+                        },
+                        "body": 
+                        {
+                            "test": "test",
+                            "test2": "test2",
+                            "number": 13,
+                            "array" : [1,2,3],
+                            "array2": ["text1", "text2", "text3"]
+                        }                      
+                    }
+                }
+            ]
+        }
+    ]
+}

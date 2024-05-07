@@ -66,3 +66,12 @@ After login to Postgres image
     > docker compose up <SERVICE_NAME> -d --build<br/>
         > docker compose up db -d --build
 - API automated test in container
+
+---
+## Day6: Mountebank
+![image using postman](/docker-compose/lab-day6-mountebank.png)
+- Update docker-compose using Mountebank
+- Create custom stub file
+- After service is up, test by Postman
+
+

@@ -66,13 +66,13 @@ services:
       retries: 5
       start_period: 5s
   
-  frontend-test:
-    image: frontend-service-test:1.0
-    build:
-      context: 
-      dockerfile: Dockerfile
-    volumes:
-      - ./frontend-testing/report
+  # frontend-test:
+  #   image: frontend-service-test:1.0
+  #   build:
+  #     #context: 
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - ./frontend-testing/report
 
   backend-test:
     image: backend-service-test:1.0
@@ -81,3 +81,30 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./backend-testing/report:/etc/newman/newman
+
+  # mock_api:
+  #   image: mock-api:1.0
+  #   container_name: mock-api
+  #   build:
+  #     context: ./mountebank
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 2525:2525
+  #     - 8090:8090 #server export at 8090, client must call at 8090
+  #   command: --configfile /imposter/imposters.ejs --allowInjection
+  #   volumes: 
+  #     - ./mountebank/imposters:/imposters
+
+  mock_api:
+    image: mock-api:latest
+    container_name: mock-api
+    build:
+      context: ./mountebank
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./mountebank/imposters:/imposters
+    ports:
+      - 2525:2525
+      - 8090:8090
+      - 8091:8091
+    command: --configfile /imposters/imposters.ejs --allowInjection
