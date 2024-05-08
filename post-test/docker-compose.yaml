@@ -1,0 +1,81 @@
+version: '3'
+
+services:
+  db_01:
+    image: postgres01
+    build:
+      context: database1
+      dockerfile: Dockerfile
+    container_name: postgres1
+    environment:
+      POSTGRES_USER: uuser
+      POSTGRES_PASSWORD: ppassword
+      POSTGRES_DB: posttest
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "posttest"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  db_02:
+    image: postgres02
+    build:
+      context: database2
+      dockerfile: Dockerfile
+    container_name: postgres2
+    environment:
+      POSTGRES_USER: uuser
+      POSTGRES_PASSWORD: ppassword
+      POSTGRES_DB: posttest2
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "posttest2"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  backend1:
+    image: backend1:1.0
+    build:
+      context: ./backend1
+      dockerfile: Dockerfile
+    container_name: backend1
+    ports:
+      - 3000:3000
+    environment:
+      DB1_HOST: db_01
+      DB1_NAME: posttest
+      DB1_USER: uuser
+      DB1_PASSWORD: ppassword
+      DB2_HOST: db_02
+      DB2_NAME: posttest2
+      DB2_USER: uuser
+      DB2_PASSWORD: ppassword
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:3000 || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    depends_on:
+      db_01:
+        condition: service_healthy
+      db_02:
+        condition: service_healthy
+
+  # backend2:
+  #   image: backend2:1.0
+  #   container_name: backend2
+  #   healthcheck:
+  #   depends_on:
+
+  # backend_test:
+  #   build: ./backend-testing
+  #   container_name: backend-test
+  #   depends_on:
+
+  # mock_api:
+  #   image: mock-api:latest
+  #   container_name: mock-api
